@@ -1,0 +1,20 @@
+#! python
+
+
+def build(ctx):
+
+    lib_names = [
+        "foreign",
+        "mediation",
+        "sandwich",
+        "ggplot2"
+        ]
+
+    for lib_name in lib_names:
+        ctx(
+            features='run_r_script',
+            source='install_required_lib.r',
+            target=lib_name + '/DESCRIPTION',
+            append=lib_name
+        )
+        ctx.add_group()

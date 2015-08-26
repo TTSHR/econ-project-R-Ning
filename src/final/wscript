@@ -1,0 +1,21 @@
+#! python
+
+
+def build(ctx):
+
+    def out_analysis(*args):
+        return ctx.path_to(ctx, 'OUT_ANALYSIS', *args)
+
+    def out_figures(*args):
+        return ctx.path_to(ctx, 'OUT_FIGURES', *args)
+
+    ctx(
+        features='run_r_script',
+        source='figure.r',
+        target=[
+            out_figures('figure1.png')
+        ],
+        deps=out_analysis('analysis_results.txt')
+    )
+
+ 

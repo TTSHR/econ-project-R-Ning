@@ -1,0 +1,16 @@
+#! python
+
+
+def build(ctx):
+
+    ctx(
+        features='run_r_script',
+        source='clean_data.r',
+        target=[
+            ctx.path_to(ctx, 'OUT_DATA', 'delete_outlier.txt')
+        ],
+        deps=[
+            '../../project_paths.r',
+            ctx.path_to(ctx, 'IN_DATA', 'gift_giving_original.csv')
+        ]
+    )

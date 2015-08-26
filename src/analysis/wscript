@@ -1,0 +1,21 @@
+#! python
+
+
+def build(ctx):
+
+    def out_data(*args):
+        return ctx.path_to(ctx, 'OUT_DATA', *args)
+
+    def out_analysis(*args):
+        return ctx.path_to(ctx, 'OUT_ANALYSIS', *args)
+
+    ctx(
+        features='run_r_script',
+        source='analysis.r',
+        target=out_analysis('analysis_results.txt'),
+        deps=[
+            out_data('delete_outlier.txt')
+            ]
+    )
+
+
